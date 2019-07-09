@@ -9,6 +9,9 @@ import { AuthModule } from "./components/auth/auth.module";
 import { AuthGuard } from "./shared/services/auth.guard";
 import { TaskModule } from "./components/task/task.module";
 import {MaterialModule} from "./shared/modules/material.module";
+import {AngularFireModule} from "@angular/fire";
+import { environment } from "../environments/environment";
+import {AngularFirestoreModule} from "@angular/fire/firestore";
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import {MaterialModule} from "./shared/modules/material.module";
     AuthModule,
     TaskModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

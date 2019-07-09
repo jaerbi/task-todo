@@ -11,6 +11,7 @@ import {AuthService} from "../../../shared/services/auth.service";
 export class LoginComponent implements OnInit {
 
   warning: string = '';
+  title: string = 'Тобі потрібно залогінитися';
 
   constructor(
       private auth: AuthService,
@@ -18,16 +19,24 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.auth.getCurrentState()) {
+      this.title = 'Прривіт, ласкаво прошу :)';
+    }
     this.route.queryParams.subscribe((params: Params) => {
       if (params['accessDenied']) {
         this.warning = 'Access Denied, Please log in';
+        this.title = 'Тобі потрібно залогінитися';
+      } else {
+        this.warning = '';
       }
     })
   }
 
   login() {
     this.auth.setAuthState(true);
-    console.log(this.auth.getCurrentState());
+    if (this.auth.getCurrentState()) {
+      this.title = 'Прривіт, ласкаво прошу :)';
+    }
   }
 
 

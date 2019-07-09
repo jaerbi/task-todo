@@ -1,5 +1,10 @@
 <div class="container">
 	<h2>Task</h2>
 	<router-outlet></router-outlet>
-
+	<ul>
+		<li *ngFor="let task of tasks | async">
+			<h5>{{ task.name }} -> {{ task.id }}</h5>
+			<button mat-raised-button color="warn" (click)="deleteTask(task)">Delete</button>
+		</li>
+	</ul>
 </div>

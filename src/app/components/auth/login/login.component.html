@@ -1,17 +1,7 @@
-<p>login works!</p>
+<h2>{{title}}</h2>
 
-<span class="warning">{{warning}}</span>
+<span *ngIf="warning" class="warning">{{warning}}</span>
 
-<form class="example-form">
-	<mat-form-field class="example-full-width">
-		<input matInput placeholder="Favorite food" value="Sushi">
-	</mat-form-field>
-
-	<mat-form-field class="example-full-width">
-		<textarea matInput placeholder="Leave a comment"></textarea>
-	</mat-form-field>
-</form>
-
-<button mat-button (click)="login()">Log In</button>
+<button [disabled]="auth.getCurrentState()" mat-button (click)="login()">Log In</button>
 <button mat-button routerLink="/home">Home</button>
 <button mat-button routerLink="/task-list">task-list</button>

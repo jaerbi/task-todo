@@ -1,0 +1,17 @@
+<p>login works!</p>
+
+<span class="warning">{{warning}}</span>
+
+<form class="example-form">
+	<mat-form-field class="example-full-width">
+		<input matInput placeholder="Favorite food" value="Sushi">
+	</mat-form-field>
+
+	<mat-form-field class="example-full-width">
+		<textarea matInput placeholder="Leave a comment"></textarea>
+	</mat-form-field>
+</form>
+
+<button mat-button (click)="login()">Log In</button>
+<button mat-button routerLink="/home">Home</button>
+<button mat-button routerLink="/task-list">task-list</button>

@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
+:root {
+	--home-color: #e6e6e6;
+	--dark-color: #333333;
+	--error-color: crimson;
+	--warning-color: #ffa414;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Press Start 2P', cursive;
+	font-size: 1rem;
+	line-height: 1.6;
+	background: var(--home-color);
+	color: var(--dark-color);
+}
+
+.container {
+	max-width: 1200px;
+	margin: auto;
+	overflow: hidden;
+	padding: 0 0.5rem;
+}
+
+.warning {
+	color: var(--warning-color);
+}

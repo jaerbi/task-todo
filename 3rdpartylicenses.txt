@@ -62,9 +62,6 @@ MIT
 
 @angular/fire/firestore
 
-@angular/forms
-MIT
-
 @angular/material
 MIT
 The MIT License
@@ -91,8 +88,6 @@ THE SOFTWARE.
 
 
 @angular/material/button
-
-@angular/material/form-field
 
 @angular/platform-browser
 MIT

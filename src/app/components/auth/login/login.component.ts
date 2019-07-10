@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   warning: string = '';
   title: string = 'Тобі потрібно залогінитися';
+  isLogggetIn: boolean = false;
 
   constructor(
       private auth: AuthService,
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isLogggetIn = this.auth.getCurrentState();
     if (this.auth.getCurrentState()) {
       this.title = 'Прривіт, ласкаво прошу :)';
     }
@@ -34,6 +36,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.setAuthState(true);
+    this.isLogggetIn = this.auth.getCurrentState();
     if (this.auth.getCurrentState()) {
       this.title = 'Прривіт, ласкаво прошу :)';
     }

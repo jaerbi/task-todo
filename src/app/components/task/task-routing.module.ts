@@ -7,9 +7,9 @@ import {TaskListComponent} from "./task-list/task-list.component";
 
 
 const routes: Routes = [
-	{ path: '', component: TaskComponent, canActivate: [AuthGuard], children:
+	{ path: 'task', component: TaskComponent, children:
 		[
-			{ path: 'task-list', component: TaskListComponent }
+			// { path: 'list', component: TaskListComponent }
 		]
 	},
 

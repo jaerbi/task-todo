@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
 import {AngularFirestore} from "@angular/fire/firestore";
-import {Observable} from "rxjs";
+import {from, Observable} from "rxjs";
+import {first, map, switchMap, tap} from "rxjs/operators";
 import {Task} from "../interfaces/task.interface";
-import {map} from "rxjs/operators";
 
 @Injectable({providedIn: 'root'})
 export class FirebaseService {
+
 
 	constructor(private db: AngularFirestore) {
 	}
@@ -27,9 +28,41 @@ export class FirebaseService {
 			);
 	}
 
-	deleteTask(id: string) {
-		this.db.doc<Task>(`tasks/${id}`)
-			.delete();
+	deleteTask(id: string): Observable<Task> {
+		return this.db.doc<Task>(`tasks/${id}`)
+			.get()
+			.pipe(
+				first(),
+				switchMap(taskDoc => {
+					if (!taskDoc || !taskDoc.data()) {
+						throw new Error('Task does not found')
+					} else {
+						return from(
+							this.db.doc<Task>(`tasks/${id}`)
+								.delete()
+						).pipe(
+							map(() => {
+								const data = taskDoc.data() as Task;
+								data.id = taskDoc.id;
+								return data;
+							})
+						);
+					}
+				})
+			);
+	}
+
+	addTask(task: Task): Observable<Task> {
+		return from(
+			this.db.collection('tasks').add({
+				name: task.name
+			})
+		).pipe(
+			map(taskRef => {
+				task.id = taskRef.id;
+				return task;
+			})
+		);
 	}
 
 }

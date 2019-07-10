@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Task} from "../../../shared/interfaces/task.interface";
+import {FirebaseService} from "../../../shared/services/firebase.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-task-list',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskListComponent implements OnInit {
 
-  constructor() { }
+  tasks: Observable<Task[]>;
+
+  constructor(private fb: FirebaseService) { }
 
   ngOnInit() {
+    this.tasks = this.fb.getTasks();
+  }
+
+  deleteTask(task: Task) {
+    const obs = this.fb.deleteTask(task.id);
+
+    obs.subscribe(taskFromFirebase => {
+      console.log(`Task with id: ${taskFromFirebase.id} was deleted`);
+    }, error => {
+      console.error(error);
+    });
   }
 
 }

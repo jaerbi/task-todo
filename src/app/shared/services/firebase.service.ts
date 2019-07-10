@@ -28,6 +28,15 @@ export class FirebaseService {
 			);
 	}
 
+	getTask(id: string): Observable<any> {
+		return this.db.collection(`tasks`).doc(id).snapshotChanges()
+			.pipe(
+				map((actions) => {
+					return actions.payload.data()
+				})
+			);
+	}
+
 	deleteTask(id: string): Observable<Task> {
 		return this.db.doc<Task>(`tasks/${id}`)
 			.get()
@@ -60,6 +69,16 @@ export class FirebaseService {
 		).pipe(
 			map(taskRef => {
 				task.id = taskRef.id;
+				return task;
+			})
+		);
+	}
+
+	editTask(task: Task): Observable<Task> {
+		return from(
+			this.db.doc(`tasks/${task.id}`).update(task)
+		).pipe(
+			map(() => {
 				return task;
 			})
 		);

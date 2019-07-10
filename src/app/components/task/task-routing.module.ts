@@ -5,7 +5,7 @@ import {AuthGuard} from "../../shared/services/auth.guard";
 import {TaskComponent} from "./task.component";
 import {TaskEditComponent} from "./task-edit/task-edit.component";
 import {TaskListComponent} from "./task-list/task-list.component";
-import {TaskAddComponent} from "./task-add/task-add.component";
+import {TaskViewComponent} from "./task-view/task-view.component";
 
 
 const routes: Routes = [
@@ -13,9 +13,9 @@ const routes: Routes = [
 		[
 			{ path: 'tasks', component: TaskListComponent, children:
 				[
-					// {
-					// 	path: ':id', component: TaskEditComponent
-					// },
+					{
+						path: ':id', component: TaskViewComponent
+					},
 					{
 						path: ':id/edit', component: TaskEditComponent
 					},

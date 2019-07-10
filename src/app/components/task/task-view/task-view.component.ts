@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Task} from "../../../shared/interfaces/task.interface";
 
 @Component({
   selector: 'app-task-view',
@@ -10,6 +11,7 @@ export class TaskViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

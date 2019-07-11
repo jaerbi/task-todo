@@ -31,8 +31,12 @@ export class FirebaseService {
 	getTask(id: string): Observable<any> {
 		return this.db.collection(`tasks`).doc(id).snapshotChanges()
 			.pipe(
-				map((actions) => {
-					return actions.payload.data()
+				map((action) => {
+					const data = action.payload.data() as Task;
+					return {
+						id: action.payload.id,
+						name: data.name
+					}
 				})
 			);
 	}

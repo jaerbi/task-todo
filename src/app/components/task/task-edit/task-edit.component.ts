@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {FirebaseService} from "../../../shared/services/firebase.service";
-import {Observable} from "rxjs";
 import {Task} from "../../../shared/interfaces/task.interface";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-task-edit',
@@ -11,23 +11,24 @@ import {Task} from "../../../shared/interfaces/task.interface";
 })
 export class TaskEditComponent implements OnInit {
 
-  id: string;
-  task: Task;
+  @Input('item') task: Task;
+  taskFormGroup: FormGroup;
 
   constructor(
       private route: ActivatedRoute,
       private fb: FirebaseService
-    ) { }
+    ) {}
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.id = params.id;
-      this.fb.getTask(params.id).subscribe((resp) => {
-        this.task = resp
-      })
-    }, error1 => {
-      console.error(error1);
-    });
+    console.log(this.task);
+    this.taskFormGroup = new FormGroup({
+      name: new FormControl(this.task.name)
+    })
+  }
+
+  addTask() {
+    console.log('111');
+
   }
 
 }

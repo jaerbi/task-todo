@@ -6,21 +6,24 @@ import {TaskComponent} from "./task.component";
 import {TaskEditComponent} from "./task-edit/task-edit.component";
 import {TaskListComponent} from "./task-list/task-list.component";
 import {TaskViewComponent} from "./task-view/task-view.component";
+import {TaskAddComponent} from "./task-add/task-add.component";
 
 
 const routes: Routes = [
-	{ path: '', component: TaskComponent, children:
+	{ path: 'tasks', component: TaskComponent, children:
 		[
-			{ path: 'tasks', component: TaskListComponent, children:
-				[
-					{
-						path: ':id', component: TaskViewComponent
-					},
-					{
-						path: ':id/edit', component: TaskEditComponent
-					},
-				]
-			}
+			{
+				path: '', component: TaskListComponent
+			},
+			{
+				path: 'add', component: TaskAddComponent
+			},
+			{
+				path: ':id', component: TaskViewComponent
+			},
+			{
+				path: ':id/edit', component: TaskEditComponent
+			},
 		]
 	},
 

@@ -1,1 +1,14 @@
 <h2>it's work view</h2>
+<h1 *ngIf="task">
+	{{ task.name }} {{task.id}} -id
+	<!--<button mat-raised-button [routerLink]="['/tasks', task.id, 'edit']">Edit</button>-->
+	<button mat-raised-button (click)="openEdit()">Edit</button>
+</h1>
+
+
+<app-task-edit *ngIf="isEdit" item="task"></app-task-edit>
+
+
+
+
+<router-outlet></router-outlet>

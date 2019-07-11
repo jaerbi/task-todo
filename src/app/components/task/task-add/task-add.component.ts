@@ -13,13 +13,12 @@ export class TaskAddComponent implements OnInit {
 
   constructor(
       private fb: FirebaseService,
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.tasksFormGroup = new FormGroup({
       name: new FormControl('')
     });
-  }
-
-  ngOnInit() {
   }
 
   addTask() {

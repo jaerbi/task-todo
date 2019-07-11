@@ -9,7 +9,7 @@ import {Observable} from "rxjs";
   templateUrl: './task-view.component.html',
   styleUrls: ['./task-view.component.scss']
 })
-export class TaskViewComponent implements OnInit, AfterViewInit {
+export class TaskViewComponent implements OnInit {
 
   task: Task;
   isEdit: boolean = false;

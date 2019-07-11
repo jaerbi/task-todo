@@ -79,13 +79,33 @@ export class FirebaseService {
 	}
 
 	editTask(task: Task): Observable<Task> {
-		return from(
-			this.db.doc(`tasks/${task.id}`).update(task)
-		).pipe(
-			map(() => {
-				return task;
-			})
-		);
+		return this.db.doc<Task>(`tasks/${task.id}`)
+			.get()
+			.pipe(
+				first(),
+				switchMap(taskDoc => {
+					if (!taskDoc || !taskDoc.data()) {
+						throw new Error('Task does not found')
+					} else {
+						return from(
+							this.db.doc<Task>(`tasks/${task.id}`)
+								.update(task)
+						).pipe(
+							map(() => {
+								const data = taskDoc.data() as Task;
+								data.id = taskDoc.id;
+								return data;
+							})
+						);
+					}
+				})
+			);
+		// return from(
+		// 	this.db.doc<Task>(`tasks/${task.id}`).update(task)
+		// )
+		// return from(
+		// 	this.db.collection(`tasks`).doc(task.id).update(task)
+		// )
 	}
 
 }

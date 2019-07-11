@@ -1,12 +1,11 @@
-<h1 [ngStyle]="{'color': 'red'}">Hello</h1>
+<div class="container">
+	<h1 [ngStyle]="{'color': 'red'}">Hello</h1>
 
-<mat-list role="list">
-	<mat-list-item role="listitem" routerLink="/home" >Home</mat-list-item>
-	<mat-list-item role="listitem" routerLink="/tasks" >Tasks</mat-list-item>
-	<mat-list-item role="listitem" routerLink="/login" >Login</mat-list-item>
-</mat-list>
+	<mat-list role="list" class="menu-list">
+		<mat-nav-list role="listitem" routerLink="/home" >Home</mat-nav-list>
+		<mat-nav-list role="listitem" routerLink="/tasks" >Tasks</mat-nav-list>
+		<mat-nav-list role="listitem" routerLink="/login" >Login</mat-nav-list>
+	</mat-list>
 
-<router-outlet></router-outlet>
-<!--<button mat-raised-button color="primary" routerLink="/login">Back to login</button>-->
-<!--<button mat-raised-button color="primary" routerLink="/tasks">Back to Tasks</button>-->
-<!--<button mat-raised-button color="primary" routerLink="/home">Back to Home</button>-->
+	<router-outlet></router-outlet>
+</div>

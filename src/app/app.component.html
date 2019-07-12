@@ -2,10 +2,13 @@
 	<h1 [ngStyle]="{'color': 'red'}">Hello</h1>
 
 	<mat-list role="list" class="menu-list">
-		<mat-nav-list role="listitem" routerLink="/home" >Home</mat-nav-list>
-		<mat-nav-list role="listitem" routerLink="/tasks" >Tasks</mat-nav-list>
-		<mat-nav-list role="listitem" routerLink="/login" >Login</mat-nav-list>
+		<mat-nav-list role="listitem" *ngFor="let item of links">
+			<a
+				routerLinkActive="active"
+				[routerLink]="item.link"
+				[routerLinkActiveOptions]="{ exact: true }"
+			>{{item.title}}</a>
+		</mat-nav-list>
 	</mat-list>
-
 	<router-outlet></router-outlet>
 </div>

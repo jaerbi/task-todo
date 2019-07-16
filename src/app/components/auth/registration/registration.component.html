@@ -1,1 +1,6 @@
 <p>registration works!</p>
+<button mat-button (click)="registerAction()">Reg Action</button>
+<span *ngIf="isActive; else dontActive">*ngIf Text</span>
+<ng-template #dontActive>
+  <span>Else text</span>
+</ng-template>

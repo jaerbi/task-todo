@@ -1,5 +1,20 @@
 <h2>{{title}}</h2>
 
+<h2 class="color-blue">Some test text</h2>
+<!--<input type="text" [(ngModel)]="ngModelText" />-->
+<input
+  type="text"
+  [value]="ngModelText"
+  (input)="ngModelText=$event.target.value" />
+<br>
+<span>{{ngModelText}}</span>
+<app-registration
+  [item]="ngModelText"
+  (update)="updateParent($event)"
+></app-registration>
+<br>
+<hr>
+
 <span *ngIf="warning" class="warning">{{warning}}</span>
 
 <button [disabled]="isLogggetIn" mat-button (click)="login()">Log In</button>

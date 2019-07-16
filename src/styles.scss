@@ -6,6 +6,8 @@
 	--home-color: #e6e6e6;
 	--dark-color: #333333;
 	--error-color: crimson;
+	--confirm-color: #0d8625;
+  --primary-color: #489599;
 	--link-color: rgba(156, 253, 242, 0.52);
 	--link-hover-color: rgba(156, 253, 242, 0.23);
 	--warning-color: #ffa414;
@@ -23,6 +25,10 @@ body {
 	line-height: 1.6;
 	background: var(--home-color);
 	color: var(--dark-color);
+
+  .mat-dialog-title {
+    font-family: 'Press Start 2P', cursive;
+  }
 }
 
 ul {
@@ -71,4 +77,15 @@ ul {
 		background-color: var(--link-color);
 		transition: background-color, color 0.3s ease-in-out;
 	}
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+}
+
+.confirm-dialog {
+  .mat-dialog-container {
+    background-color: var(--primary-color);
+  }
 }

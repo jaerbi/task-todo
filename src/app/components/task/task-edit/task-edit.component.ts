@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 import {FirebaseService} from "../../../shared/services/firebase.service";
 import {Task} from "../../../shared/interfaces/task.interface";
 import {FormControl, FormGroup} from "@angular/forms";
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-task-edit',
@@ -17,11 +18,11 @@ export class TaskEditComponent implements OnInit {
 
   constructor(
       private route: ActivatedRoute,
-      private fb: FirebaseService
+      private fb: FirebaseService,
+      private notify: MatSnackBar,
     ) {}
 
   ngOnInit() {
-    console.log(this.task);
     this.taskFormGroup = new FormGroup({
       name: new FormControl(this.task.name),
       id: new FormControl(this.task.id),
@@ -30,9 +31,12 @@ export class TaskEditComponent implements OnInit {
 
   addTask() {
     const taskData = this.taskFormGroup.value;
-    console.log(taskData);
     this.fb.editTask(taskData).subscribe(taskFromFirebase => {
-      console.log(`Task with id: ${taskFromFirebase.id} was edited`);
+      this.notify.open(
+        `Таска з назвою: ${taskFromFirebase.name} була відредагована`,
+        'Coll',
+        {duration: 3000}
+        );
       this.onEdit.emit();
     }, error => {
       console.error(error);

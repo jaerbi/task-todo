@@ -1,8 +1,7 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Task} from "../../../shared/interfaces/task.interface";
 import {ActivatedRoute, Params} from "@angular/router";
 import {FirebaseService} from "../../../shared/services/firebase.service";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-task-view',
@@ -12,6 +11,7 @@ import {Observable} from "rxjs";
 export class TaskViewComponent implements OnInit {
 
   task: Task;
+  isLoaded: boolean = false;
   isEdit: boolean = false;
 
   constructor(
@@ -23,7 +23,7 @@ export class TaskViewComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.fb.getTask(params.id).subscribe((resp) => {
         this.task = resp;
-        console.log(this.task);
+        this.isLoaded = true;
       })
     }, error1 => {
       console.error(error1);

@@ -1,9 +1,12 @@
 <h2>it's work view</h2>
-<h1 *ngIf="task">
-	{{ task.name }}
-	<button mat-raised-button (click)="openEdit()">Edit</button>
-</h1>
+<app-loader *ngIf="!isLoaded"></app-loader>
+<div *ngIf="isLoaded">
+  <h1 *ngIf="task">
+    {{ task.name }}
+    <button mat-raised-button (click)="openEdit()">Edit</button>
+  </h1>
 
-<app-task-edit *ngIf="isEdit" [item]="task" (onEdit)="openEdit($event)"></app-task-edit>
+  <app-task-edit *ngIf="isEdit" [item]="task" (onEdit)="openEdit($event)"></app-task-edit>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>

@@ -1,9 +1,9 @@
 <mat-list role="list">
-	<mat-list-item class="task-list" role="listitem" *ngFor="let task of tasks | async">
-		<h4>{{ task.name }}</h4>
-		<div>
-			<button mat-raised-button color="warn" (click)="deleteTask(task)">Delete</button>
-			<button mat-raised-button [routerLink]="['/tasks', task.id]">View</button>
-		</div>
-	</mat-list-item>
+  <mat-list-item class="task-list" role="listitem" *ngFor="let task of tasks | async">
+    <h4>{{ task.name }}</h4>
+    <div>
+      <button mat-raised-button color="warn" (click)="deleteTask(task)">Delete</button>
+      <button mat-raised-button [routerLink]="['/tasks', task.id]">View</button>
+    </div>
+  </mat-list-item>
 </mat-list>

@@ -1,5 +1,5 @@
 export interface Task {
   name: string
-  description?: strin
+  description?: string
   id?: string
 }

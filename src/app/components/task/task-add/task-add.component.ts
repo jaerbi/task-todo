@@ -12,26 +12,28 @@ import {MatSnackBar} from '@angular/material';
 export class TaskAddComponent implements OnInit {
 
   tasksFormGroup: FormGroup;
+  rating: Array = [1,2,3,4,5];
 
   constructor(
       private fb: FirebaseService,
       private router: Router,
-      private notify: MatSnackBar,
+      private notify: MatSnackBar
   ) {}
 
   ngOnInit() {
     this.tasksFormGroup = new FormGroup({
-      name: new FormControl('')
+      name: new FormControl(''),
+      rating: new FormControl()
     });
   }
 
   addTask() {
+    console.log(this.tasksFormGroup.value);
     const taskData = this.tasksFormGroup.value;
     this.fb.addTask(taskData).subscribe(
         (task) => {
-          console.log(`Task with id: ${task.id} and name: ${task.name} was created`);
           this.notify.open(
-            `Таска з Firebase id: ${task.id} і іменем: ${task.name} створено`,
+            `Таска з Firebase rating: ${task.rating} і іменем: ${task.name} створено`,
             'WoooW',
             {duration: 3000});
           this.router.navigate(['/tasks']);

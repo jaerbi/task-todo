@@ -21,7 +21,8 @@ export class FirebaseService {
 
             return {
               id: action.payload.doc.id,
-              name: data.name
+              name: data.name,
+              rating: data.rating,
             };
           });
         })
@@ -33,9 +34,11 @@ export class FirebaseService {
       .pipe(
         map((action) => {
           const data = action.payload.data() as Task;
+          // debugger
           return {
             id: action.payload.id,
-            name: data.name
+            name: data.name,
+            rating: data.rating,
           };
         })
       );
@@ -56,6 +59,7 @@ export class FirebaseService {
             ).pipe(
               map(() => {
                 const data = taskDoc.data() as Task;
+                console.log(data);
                 data.id = taskDoc.id;
                 return data;
               })
@@ -68,7 +72,8 @@ export class FirebaseService {
   addTask(task: Task): Observable<Task> {
     return from(
       this.db.collection('tasks').add({
-        name: task.name
+        name: task.name,
+        rating: task.rating
       })
     ).pipe(
       map(taskRef => {

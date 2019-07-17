@@ -15,6 +15,7 @@ export class TaskEditComponent implements OnInit {
   @Input('item') task: Task;
   @Output() onEdit = new EventEmitter<void>();
   taskFormGroup: FormGroup;
+  rating: Array = [1,2,3,4,5];
 
   constructor(
       private route: ActivatedRoute,
@@ -25,6 +26,7 @@ export class TaskEditComponent implements OnInit {
   ngOnInit() {
     this.taskFormGroup = new FormGroup({
       name: new FormControl(this.task.name),
+      rating: new FormControl(this.task.rating),
       id: new FormControl(this.task.id),
     })
   }

@@ -9,6 +9,7 @@
 <br>
 <span>{{ngModelText}}</span>
 <app-registration
+  #registration
   [item]="ngModelText"
   (update)="updateParent($event)"
 ></app-registration>

@@ -4,5 +4,11 @@
 	<mat-form-field class="example-full-width">
 		<input matInput placeholder="Type you task" type="text" formControlName="name">
 	</mat-form-field>
+  <mat-form-field class="example-full-width" >
+    <mat-label>Rating</mat-label>
+    <mat-select formControlName="rating">
+      <mat-option value="{{i}}" *ngFor="let i of rating">{{i}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 	<button mat-button color="primary" type="submit">Edit</button>
 </form>

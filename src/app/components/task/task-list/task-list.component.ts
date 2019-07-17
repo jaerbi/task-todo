@@ -31,10 +31,9 @@ export class TaskListComponent implements OnInit {
       .subscribe((result) => {
         if(result) {
           const obs = this.fb.deleteTask(task.id);
-
           obs.subscribe(taskFromFirebase => {
             this.notify.open(
-              `Таска з назвою: ${taskFromFirebase.name} була видалена`,
+              `Таска з рейтингом: ${taskFromFirebase.rating} була видалена`,
               'OK',
               {duration: 3000}
               )

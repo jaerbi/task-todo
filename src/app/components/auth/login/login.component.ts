@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, ElementRef, OnChanges, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 
 import {AuthService} from "../../../shared/services/auth.service";
@@ -10,7 +10,7 @@ import {migrateLegacyGlobalConfig} from '@angular/cli/utilities/config';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
 
   warning: string = '';
   title: string = 'Тобі потрібно залогінитися';
@@ -19,11 +19,15 @@ export class LoginComponent implements OnInit {
   ngModelText: string = '';
 
   constructor(
-      private auth: AuthService,
-      private route: ActivatedRoute
-  ) { }
+    private auth: AuthService,
+    private route: ActivatedRoute
+  ) {
+  }
+
+  @ViewChild('registration', { static: false }) registration: ElementRef;
 
   ngOnInit() {
+    console.log('OnInit', this.registration);
     this.isLogggetIn = this.auth.getCurrentState();
     if (this.auth.getCurrentState()) {
       this.title = 'Прривіт, ласкаво прошу :)';
@@ -35,7 +39,7 @@ export class LoginComponent implements OnInit {
       } else {
         this.warning = '';
       }
-    })
+    });
   }
 
   login() {
@@ -49,7 +53,7 @@ export class LoginComponent implements OnInit {
   sum(number) {
     let arr = [];
     for (let i = 0; i <= number; i++) {
-      arr.push(i)
+      arr.push(i);
     }
 
     return arr.reduce((sum, value) => {
@@ -61,5 +65,8 @@ export class LoginComponent implements OnInit {
     console.log(event, 'updateParent');
   }
 
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit', this.registration);
+  }
 
 }

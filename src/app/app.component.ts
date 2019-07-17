@@ -10,5 +10,5 @@ export class AppComponent {
     { title: 'Home', link: '/home' },
     { title: 'Tasks', link: '/tasks' },
     { title: 'Login', link: '/login' },
-  ]
+  ];
 }

@@ -25,6 +25,7 @@ export class TaskListComponent implements OnInit {
     this.tasks = this.fb.getTasks().pipe(
             tap((result: Task[]) => result.sort((a, b) => a.name - b.name))
         );
+    console.log('test');
   }
 
   deleteTask(task: Task) {

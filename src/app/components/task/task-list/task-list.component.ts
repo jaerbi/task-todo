@@ -22,7 +22,9 @@ export class TaskListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tasks = this.fb.getTasks();
+    this.tasks = this.fb.getTasks().pipe(
+            tap((result: Task[]) => result.sort((a, b) => a.name - b.name))
+        );
   }
 
   deleteTask(task: Task) {
